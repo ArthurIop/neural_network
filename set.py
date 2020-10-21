@@ -4,10 +4,9 @@ from tensorflow.python.keras.layers import Activation, Dropout, Flatten, Dense
 from tensorflow.python.keras.optimizers import Adam
 from tensorflow.python.keras.preprocessing import image
 import numpy as np
-
-
 import matplotlib.pyplot as plt
 
+#загрузка и обработка изображения для тестирования нейросети
 image_file_name = 'C:\\Users\\egiazaryan\\Desktop\\a.2.jpg'
 img = image.load_img(image_file_name, target_size=(14, 14))
 plt.imshow(img)
@@ -17,18 +16,15 @@ img_array /= 255.
 
 # Загружаем данные об архитектуре сети из файла json
 json_file = open("C:\\Users\\egiazaryan\\PycharmProjects\\pythonProject11\\golosovalka.json", "r")
-
-
 loaded_model_json = json_file.read()
-
-
 json_file.close()
+
 # Создаем модель на основе загруженных данных
 loaded_model = model_from_json(loaded_model_json)
 # Загружаем веса в модель
 loaded_model.load_weights("C:\\Users\\egiazaryan\\PycharmProjects\\pythonProject11\\golosovalka.h5")
 
-
+#Проверка на работы на изображении 14x14
 print(np.argmax(loaded_model.predict(img_array)))
 
 

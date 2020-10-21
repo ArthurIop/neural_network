@@ -13,7 +13,6 @@ test_dir = 'C:\\Users\\egiazaryan\\Desktop\\dataset2\\test'
 # Размеры изображения
 img_width, img_height = 14, 14
 # Размерность тензора на основе изображения для входных данных в нейронную сеть
-# backend Tensorflow, channels_last
 input_shape = (img_width, img_height, 3)
 # Количество эпох
 epochs = 20
@@ -28,10 +27,7 @@ nb_test_samples = 8
 
 datagen = ImageDataGenerator(rescale=1. / 255)
 
-
-
 model = Sequential()
-
 
 model.add(Conv2D(32, (3, 3)))
 model.add(Activation('relu'))
@@ -82,10 +78,13 @@ scores = model.evaluate_generator(test_generator, nb_test_samples // batch_size)
 
 print("Аккуратность на тестовых данных: %.2f%%" % (scores[1]*100))
 
+#Сохранение параметров нейросети
 model_json = model.to_json()
 json_file = open('golosovalka.json', 'w')
-
 json_file.write(model_json)
 json_file.close()
+
+#Сохранение весов, полученных в процессе обучения
 model.save_weights('golosovalka.h5')
-print('sohranilos')
+
+print('Сохранение завершено')
