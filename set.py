@@ -24,7 +24,7 @@ loaded_model = model_from_json(loaded_model_json)
 # Загружаем веса в модель
 loaded_model.load_weights("C:\\Users\\egiazaryan\\PycharmProjects\\pythonProject11\\golosovalka.h5")
 
-#Проверка на работы на изображении 14x14
+#Проверка работы на изображении 14x14
 print(np.argmax(loaded_model.predict(img_array)))
 
 
